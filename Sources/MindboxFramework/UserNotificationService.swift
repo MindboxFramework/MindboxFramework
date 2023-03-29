@@ -3,7 +3,7 @@ import UserNotifications
 import Mindbox
 import UIKit
 
-final class UserNotificationService: NSObject {
+final public class UserNotificationService: NSObject {
     
     // MARK: - DI
     private var notificationCenter  = UNUserNotificationCenter.current()
