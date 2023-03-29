@@ -17,4 +17,6 @@ final public class HandlerDidTapPushNotificationService {
         let domainAdvertising = userInfo["clickUrl"] as? String
         return domainAdvertising
     }
+    
+    public init() {}
 }
