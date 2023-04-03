@@ -16,13 +16,19 @@ final public class SDKMindboxService {
         self.endpointDevelopment = endpointDevelopment
     }
     
-    public func setup(with setup: Setup){
+    public func setup(with setup: Setup = .none){
         let endpoint: String
         switch setup {
             case .production:
                 endpoint = self.endpointProduction
             case .development:
                 endpoint = self.endpointDevelopment
+            case .none:
+                #if DEBUG
+                endpoint = self.endpointDevelopment
+                #else
+                endpoint = self.endpointProduction
+                #endif
         }
         do {
             let mindboxSdkConfig = try MBConfiguration(
@@ -49,4 +55,5 @@ public enum Setup {
     
     case production
     case development
+    case none
 }
