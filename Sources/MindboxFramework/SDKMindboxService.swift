@@ -4,6 +4,9 @@ import Foundation
 
 final public class SDKMindboxService {
     
+    public var deviceUUID: String?
+    public var deviceToken: String?
+    
     private let endpointProduction: String
     private let endpointDevelopment: String
     private let domain = "api.mindbox.cloud"
@@ -26,8 +29,10 @@ final public class SDKMindboxService {
             case .none:
                 #if DEBUG
                 endpoint = self.endpointDevelopment
-                #else
+                #elseif RELEASE
                 endpoint = self.endpointProduction
+                #else
+                endpoint = self.endpointDevelopment
                 #endif
         }
         do {
@@ -45,7 +50,9 @@ final public class SDKMindboxService {
     
     private func inition(with mindboxSdkConfig: MBConfiguration){
         Mindbox.shared.initialization(configuration: mindboxSdkConfig)
-        Mindbox.shared.getDeviceUUID { deviceUUID in
+        Mindbox.shared.getDeviceUUID { [weak self] deviceUUID in
+            guard let self = self else { return }
+            self.deviceUUID = deviceUUID
             print(deviceUUID)
         }
     }
