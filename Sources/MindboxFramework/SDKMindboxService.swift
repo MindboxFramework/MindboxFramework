@@ -4,8 +4,8 @@ import Foundation
 
 final public class SDKMindboxService {
     
-    public var deviceUUID: String?
-    public var deviceToken: String?
+    public var deviceUUID: String = ""
+    public var deviceToken: String = ""
     
     private let endpointProduction: String
     private let endpointDevelopment: String
