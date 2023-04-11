@@ -32,7 +32,7 @@ final public class SDKMindboxService {
                 #elseif RELEASE
                 endpoint = self.endpointProduction
                 #else
-                endpoint = self.endpointDevelopment
+                endpoint = self.endpointProduction
                 #endif
         }
         do {
