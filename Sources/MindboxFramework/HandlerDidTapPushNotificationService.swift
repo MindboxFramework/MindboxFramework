@@ -21,7 +21,7 @@ final public class HandlerDidTapPushNotificationService {
     
     private func parse(with userInfo: [AnyHashable : Any]) -> PushModel? {
         let clickUrlString = (userInfo["clickUrl"] as? String) ?? ""
-        let homeUrlString = (userInfo["homeUrl"] as? String) ?? ""
+        let homeUrlString = (userInfo["payload"] as? String) ?? ""
         let clickUrl = URL(string: clickUrlString)
         let homeUrl = URL(string: homeUrlString)
         let pushModel = PushModel(
